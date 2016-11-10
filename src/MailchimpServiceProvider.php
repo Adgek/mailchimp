@@ -1,9 +1,8 @@
 <?php
-namespace NZTim\Mailchimp;
+namespace Adgek\Mailchimp;
 
 use App;
 use Illuminate\Support\ServiceProvider;
-use Psr\Log\LoggerInterface;
 
 class MailchimpServiceProvider extends ServiceProvider
 {
@@ -12,7 +11,7 @@ class MailchimpServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->bind(Mailchimp::class, function() {
-            return new Mailchimp(env('MC_KEY'), App::make(LoggerInterface::class));
+            return new Mailchimp(new DrewMMailchimp(env('MC_KEY')));
         });
     }
 
